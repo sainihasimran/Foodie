@@ -8,4 +8,33 @@
     <string name="sign_up_underline"><u>Sign Up</u></string>
     <string name="sign_up">Sign Up</string>
     <string name="signin_text">Already have an account?</string>
+    <string name="add_recipe">Add Recipe</string>
+
+    <!-- Create Recipe Screen -->
+    <string name="name">Name</string>
+    <string name="serving_size">Serving Size</string>
+    <string name="click_to_add_image">Click to add image</string>
+    <string name="category">Category</string>
+    <string name="time">Time</string>
+    <string name="calories">Calories</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="preparation">Preparation</string>
+    <string name="add_preparation_step">Add Preparation Step</string>
+    <string name="create">Create</string>
+    <string name="storage_permission_declined">Storage permission declined</string>
+    <string name="choose_image_error">Choose image error</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="preparation_steps">Preparation Steps</string>
+    <string name="error">Error</string>
+
+    <!-- Form validation errors -->
+    <string name="error_empty_recipe_name">Recipe name cannot be empty</string>
+    <string name="error_empty_recipe_serving_size">Recipe serving size cannot be empty</string>
+    <string name="error_empty_recipe_category">Recipe category cannot be empty</string>
+    <string name="error_empty_recipe_time">Recipe time cannot be empty</string>
+    <string name="error_empty_recipe_duration">Recipe duration cannot be empty</string>
+    <string name="error_empty_recipe_calories">Recipe calories cannot be empty</string>
+    <string name="error_empty_recipe_ingredients">Recipe ingredients cannot be empty</string>
+    <string name="error_empty_recipe_preparation_steps">Recipe preparation steps cannot be empty</string>
 </resources>

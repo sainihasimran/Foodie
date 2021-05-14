@@ -1,4 +1,4 @@
-package com.cegep.foodie;
+package com.cegep.foodie.ui.auth;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,23 +12,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.cegep.foodie.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignInFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
-    private static final String TAG = "SignInFragment";
+    private static final String TAG = "SignUpFragment";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+        return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.sign_up_text).setOnClickListener(v -> {
+        view.findViewById(R.id.signin_text).setOnClickListener(v -> {
             Activity activity = getActivity();
             if (activity instanceof AuthActivity) {
                 ((AuthActivity) activity).flipCard();
@@ -39,7 +40,7 @@ public class SignInFragment extends Fragment {
         EditText passwordInput = view.findViewById(R.id.password_input);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        view.findViewById(R.id.sign_in_button).setOnClickListener(v -> {
+        view.findViewById(R.id.sign_up_button).setOnClickListener(v -> {
             String email = emailInput.getText().toString();
             String password = passwordInput.getText().toString();
 
@@ -53,7 +54,7 @@ public class SignInFragment extends Fragment {
                 return;
             }
 
-            auth.signInWithEmailAndPassword(email, password)
+            auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(getActivity(), task -> {
                         if (task.isSuccessful()) {
                             Activity activity = getActivity();
@@ -62,7 +63,7 @@ public class SignInFragment extends Fragment {
                             }
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getContext(), "Sign In failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Sign Up failed", Toast.LENGTH_SHORT).show();
                         }
                     });
         });
