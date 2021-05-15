@@ -2,12 +2,11 @@ package com.cegep.foodie.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.Objects;
 
 public class PreparationStep implements Parcelable  {
 
     public int stepNumber;
-
-    public int recipeId;
 
     public String stepDescription;
 
@@ -15,15 +14,13 @@ public class PreparationStep implements Parcelable  {
 
     }
 
-    public PreparationStep(int stepNumber, int recipeId, String stepDescription) {
+    public PreparationStep(int stepNumber, String stepDescription) {
         this.stepNumber = stepNumber;
-        this.recipeId = recipeId;
         this.stepDescription = stepDescription;
     }
 
     public PreparationStep(Parcel in) {
         stepNumber = in.readInt();
-        recipeId = in.readInt();
         stepDescription = in.readString();
     }
 
@@ -46,7 +43,24 @@ public class PreparationStep implements Parcelable  {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(stepNumber);
-        dest.writeInt(recipeId);
         dest.writeString(stepDescription);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PreparationStep that = (PreparationStep) o;
+        return stepNumber == that.stepNumber &&
+                Objects.equals(stepDescription, that.stepDescription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stepNumber, stepDescription);
     }
 }

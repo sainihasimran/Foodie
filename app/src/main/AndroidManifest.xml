@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Foodie">
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:theme="@style/Theme.Foodie.Login">
+            android:theme="@style/Theme.Foodie.Login"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,15 +5,16 @@ import android.os.Parcelable;
 
 public class Ingredient implements Parcelable {
 
-    public int recipeId;
-
     public String name;
 
     public Ingredient() {
     }
 
+    public Ingredient(String name) {
+        this.name = name;
+    }
+
     private Ingredient(Parcel in) {
-        in.writeInt(recipeId);
         in.writeString(name);
     }
 
@@ -24,7 +25,6 @@ public class Ingredient implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        recipeId = dest.readInt();
         name = dest.readString();
     }
 

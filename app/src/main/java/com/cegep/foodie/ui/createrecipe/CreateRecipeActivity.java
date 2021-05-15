@@ -32,6 +32,9 @@ import com.cegep.foodie.model.PreparationStep;
 import com.cegep.foodie.model.Recipe;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,7 +45,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CreateRecipeActivity extends AppCompatActivity implements RemoveItemClickListener {
 
@@ -103,7 +108,7 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
                 if (!TextUtils.isEmpty(selectedImage)) {
                     uploadPhoto();
                 } else {
-                    //todo create recipe here
+                    createRecipe();
                 }
             }
         });
@@ -328,7 +333,10 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
             }).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     recipe.setImage(task.getResult().toString());
-                    //todo create recipe here
+                    createRecipe();
+                } else {
+                    task.getException().printStackTrace();
+                    Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(e -> Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show());
         } catch (FileNotFoundException e) {
@@ -336,4 +344,55 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
             Toast.makeText(this, "Failed to create product", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void createRecipe() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        String recipeId = database.child("recipes").push().getKey();
+
+        Map<String, Object> recipeValues = new HashMap<>();
+        recipeValues.put("name", recipe.getName());
+        recipeValues.put("servingSize", recipe.getServingSize());
+        recipeValues.put("category", recipe.getCategory());
+        recipeValues.put("duration", recipe.getDuration());
+        recipeValues.put("calories", recipe.getCalories());
+        recipeValues.put("image", recipe.getImage());
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/recipes/" + recipeId, recipeValues);
+        childUpdates.put("/user-recipes/" + userId + "/" + recipeId, recipeValues);
+        childUpdates.put("/ingredients/" + recipeId, ingredients);
+        childUpdates.put("/preparation-steps/" + recipeId, preparationSteps);
+
+        database.updateChildren(childUpdates)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(CreateRecipeActivity.this, "Recipe created successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    e.printStackTrace();
+                    Toast.makeText(CreateRecipeActivity.this, "Recipe creation failed", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    // TODO: 15/05/21 remove this method
+//    private void generateTestRecipe() {
+//        recipe = new Recipe();
+//        recipe.setName("Test Recipe 1");
+//        recipe.setServingSize(2);
+//        recipe.setCategory("Vegan");
+//        recipe.setDuration(60);
+//        recipe.setCalories(1200);
+//
+//        List<Ingredient> ingredients = new ArrayList<>();
+//        ingredients.add(new Ingredient("Ingredient 1"));
+//        ingredients.add((new Ingredient("Ingredient 2")));
+//        recipe.setIngredients(ingredients);
+//
+//        List<PreparationStep> preparationSteps = new ArrayList<>();
+//        preparationSteps.add(new PreparationStep(1, "Preparation Step 1"));
+//        preparationSteps.add(new PreparationStep(2, "Preparation Step 2"));
+//        recipe.setPreparationSteps(preparationSteps);
+//    }
 }

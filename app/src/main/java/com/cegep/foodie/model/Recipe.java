@@ -3,6 +3,7 @@ package com.cegep.foodie.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.List;
+import java.util.Objects;
 
 public class Recipe implements Parcelable {
 
@@ -135,4 +136,29 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Recipe recipe = (Recipe) o;
+        return id == recipe.id &&
+                servingSize == recipe.servingSize &&
+                duration == recipe.duration &&
+                calories == recipe.calories &&
+                Objects.equals(name, recipe.name) &&
+                Objects.equals(image, recipe.image) &&
+                Objects.equals(category, recipe.category) &&
+                Objects.equals(ingredients, recipe.ingredients) &&
+                Objects.equals(preparationSteps, recipe.preparationSteps);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, image, servingSize, category, duration, calories, ingredients, preparationSteps);
+    }
 }
