@@ -5,6 +5,14 @@ import android.os.Parcelable;
 
 public class Ingredient implements Parcelable {
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String name;
 
     public Ingredient() {

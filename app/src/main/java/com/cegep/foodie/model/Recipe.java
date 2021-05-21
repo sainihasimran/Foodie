@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class Recipe implements Parcelable {
 
-    public int id;
-
+    public String id;
     private String name;
+
 
     private String image;
 
@@ -25,15 +25,55 @@ public class Recipe implements Parcelable {
 
     private List<PreparationStep> preparationSteps;
 
+
+
+    public Recipe(String id, String name, String image, int servingSize, String category, int duration, int calories, List<Ingredient> ingredients, List<PreparationStep> preparationSteps) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.servingSize = servingSize;
+        this.category = category;
+        this.duration = duration;
+        this.calories = calories;
+        this.ingredients = ingredients;
+        this.preparationSteps = preparationSteps;
+    }
+
+
     public Recipe() {
 
     }
 
-    public int getId() {
+
+    protected Recipe(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        image = in.readString();
+        servingSize = in.readInt();
+        category = in.readString();
+        duration = in.readInt();
+        calories = in.readInt();
+        ingredients = in.createTypedArrayList(Ingredient.CREATOR);
+        preparationSteps = in.createTypedArrayList(PreparationStep.CREATOR);
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,6 +83,10 @@ public class Recipe implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void setImage(String image) {
@@ -97,19 +141,6 @@ public class Recipe implements Parcelable {
         this.preparationSteps = preparationSteps;
     }
 
-    public String getImage() {
-        // TODO: 14/05/21 Add default image
-        return image;
-    }
-
-    private Recipe(Parcel in) {
-        image = in.readString();
-        name = in.readString();
-        servingSize = in.readInt();
-        category = in.readString();
-        duration = in.readInt();
-        calories = in.readInt();
-    }
 
     @Override
     public int describeContents() {
@@ -118,47 +149,14 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(image);
+        dest.writeString(id);
         dest.writeString(name);
+        dest.writeString(image);
         dest.writeInt(servingSize);
         dest.writeString(category);
         dest.writeInt(duration);
         dest.writeInt(calories);
-    }
-
-    public static final Creator<Recipe> CREATOR
-            = new Creator<Recipe>() {
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Recipe recipe = (Recipe) o;
-        return id == recipe.id &&
-                servingSize == recipe.servingSize &&
-                duration == recipe.duration &&
-                calories == recipe.calories &&
-                Objects.equals(name, recipe.name) &&
-                Objects.equals(image, recipe.image) &&
-                Objects.equals(category, recipe.category) &&
-                Objects.equals(ingredients, recipe.ingredients) &&
-                Objects.equals(preparationSteps, recipe.preparationSteps);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, image, servingSize, category, duration, calories, ingredients, preparationSteps);
+        dest.writeTypedList(ingredients);
+        dest.writeTypedList(preparationSteps);
     }
 }

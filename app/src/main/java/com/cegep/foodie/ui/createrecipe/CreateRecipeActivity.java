@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -30,6 +31,7 @@ import com.cegep.foodie.model.Category;
 import com.cegep.foodie.model.Ingredient;
 import com.cegep.foodie.model.PreparationStep;
 import com.cegep.foodie.model.Recipe;
+import com.cegep.foodie.model.RecipeCategory;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -109,8 +111,10 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
                     uploadPhoto();
                 } else {
                     createRecipe();
+
                 }
             }
+
         });
     }
 
@@ -347,9 +351,9 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
 
     private void createRecipe() {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+        // VEGETARIAN, NON_VEGETARIAN, VEGAN, DRINKS;
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-        String recipeId = database.child("recipes").push().getKey();
+
 
         Map<String, Object> recipeValues = new HashMap<>();
         recipeValues.put("name", recipe.getName());
@@ -359,21 +363,22 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
         recipeValues.put("calories", recipe.getCalories());
         recipeValues.put("image", recipe.getImage());
 
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/recipes/" + recipeId, recipeValues);
-        childUpdates.put("/user-recipes/" + userId + "/" + recipeId, recipeValues);
-        childUpdates.put("/ingredients/" + recipeId, ingredients);
-        childUpdates.put("/preparation-steps/" + recipeId, preparationSteps);
 
-        database.updateChildren(childUpdates)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(CreateRecipeActivity.this, "Recipe created successfully", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(CreateRecipeActivity.this, "Recipe creation failed", Toast.LENGTH_SHORT).show();
-                });
+      // CREATE RECIPE
+        DatabaseReference db_ref = database.child("RecipeCategory").child(recipe.getCategory()).push(); // new key is created
+        String getRecipeId = db_ref.getKey();
+        db_ref.setValue( recipeValues);
+
+        // CREATE INGREDIENT
+        DatabaseReference ingredient = database.child("RecipeCategory").child(recipe.getCategory()).child(getRecipeId).child("ingredients");
+        ingredient.setValue(ingredients);
+
+        //CREATE PREPERATIONS
+        DatabaseReference preparationStep = database.child("RecipeCategory").child(recipe.getCategory()).child(getRecipeId).child("preparationSteps");
+        preparationStep.setValue(preparationSteps);
+
+
+
     }
 
     // TODO: 15/05/21 remove this method
