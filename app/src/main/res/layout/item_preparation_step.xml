@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/size_ml"
-        android:textAppearance="?textAppearanceCaption"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
@@ -34,7 +34,7 @@
         android:layout_marginStart="@dimen/size_m"
         android:layout_marginEnd="@dimen/size_m"
         android:paddingTop="@dimen/size_s"
-        android:textAppearance="?textAppearanceBody1"
+        android:textColor="#000"
         app:layout_constraintEnd_toStartOf="@id/remove_button"
         app:layout_constraintStart_toEndOf="@id/step_number"
         app:layout_constraintTop_toTopOf="parent"
