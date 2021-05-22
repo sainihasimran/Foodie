@@ -20,6 +20,7 @@ import com.cegep.foodie.list.RecipeAdapter;
 import com.cegep.foodie.list.StepsAdapter;
 import com.cegep.foodie.model.Ingredient;
 import com.cegep.foodie.model.Recipe;
+import com.cegep.foodie.ui.createrecipe.EditRecipe;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     TextView servingSize ;
     ImageView recipeImage ;
     ImageView deleterecipe ;
+    ImageView updateRecipe ;
     RecyclerView stepsList ;
     ArrayList<Recipe> recipeArrayList;
 
@@ -51,6 +53,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         servingSize = (TextView)findViewById(R.id.serving_size);
         recipeImage = (ImageView) findViewById(R.id.recipe_image);
         deleterecipe = (ImageView) findViewById(R.id.deleterecipe);
+        updateRecipe = (ImageView) findViewById(R.id.updateRecipe);
         stepsList = findViewById(R.id.preparationlist);
 
 
@@ -84,7 +87,15 @@ public class RecipeDetailActivity extends AppCompatActivity {
             }
         });
 
-
+        updateRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RecipeDetailActivity.this, EditRecipe.class);
+                i.putExtra("recipeId",recipe.getId());
+                i.putExtra("recipeCategory",recipe.getCategory());
+                startActivity(i);
+            }
+        });
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("RecipeCategory").child(recipe.getCategory()).child(recipe.getId()).addValueEventListener(new ValueEventListener() {

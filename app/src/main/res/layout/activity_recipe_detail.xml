@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recipe_name"
-            android:textColor="#000000"
+            android:textColor="#F8F4F4"
             android:layout_marginStart="10dp"
             android:textSize="50sp"
             android:textStyle="bold"
@@ -45,6 +45,14 @@
             android:background="@drawable/ic_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recipe_time"/>
+        <ImageView
+            android:id="@+id/updateRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deleterecipe"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
