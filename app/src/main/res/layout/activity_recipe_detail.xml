@@ -3,116 +3,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/recipe_image"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/recipe_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+
+
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/image_gradient"
+
+                />
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="end">
+                <ImageView
+                    android:id="@+id/updateRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_baseline_edit_24"
+                    android:padding="16dp"
+                    />
+                <ImageView
+
+                    android:id="@+id/deleterecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_delete"
+                    android:padding="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom">
+                <TextView
+                    android:id="@+id/recipe_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/recipe_name"
+                    android:textColor="#F8F4F4"
+
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/serving"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F8F4F4"
+
+                        android:drawableLeft="@drawable/ic_group" />
+
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F8F4F4"
+                        android:layout_marginLeft="16dp"
+
+                        android:drawableLeft="@drawable/baseline_alarm_24" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+
+
 
         <TextView
-            android:id="@+id/recipe_name"
+            android:id="@+id/ingredients_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recipe_name"
-            android:textColor="#F8F4F4"
-            android:layout_marginStart="10dp"
-            android:textSize="50sp"
+
+
+            android:text="@string/ingredients"
+            android:textColor="#000000"
+            android:textSize="20sp"
+
+            android:layout_marginTop="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/recipe_image"
-            app:layout_constraintStart_toStartOf="parent" />
+
+            />
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/ingredients_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="@dimen/size_l"
+            android:layout_marginTop="@dimen/size_m"
+            android:layout_marginEnd="@dimen/size_l"
+            android:animateLayoutChanges="true"
+
+            />
 
         <TextView
-            android:id="@+id/recipe_time"
+            android:id="@+id/preparation_steps_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="@dimen/size_m"
-            android:drawableStart="@drawable/baseline_alarm_24"
-            android:textColor="#000"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_name" />
-        <ImageView
-            android:id="@+id/deleterecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:background="@drawable/ic_delete"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_time"/>
-        <ImageView
-            android:id="@+id/updateRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:background="@drawable/ic_baseline_edit_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deleterecipe"/>
+            android:text="@string/preparation_steps"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            android:textColor="#000000"
+
+            android:textSize="20sp"
+
+
+            android:layout_marginTop="16dp"
+            android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/preparationlist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_time">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_l"/>
 
-            <TextView
-                android:id="@+id/ingredients_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ingredients"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/serving_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/ingredients_label"
-                app:layout_constraintTop_toBottomOf="@id/ingredients_label" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/ingredients_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_l"
-                android:layout_marginTop="@dimen/size_m"
-                android:layout_marginEnd="@dimen/size_l"
-                android:animateLayoutChanges="true"
-                app:layout_constraintTop_toBottomOf="@id/serving_size" />
-
-            <TextView
-                android:id="@+id/preparation_steps_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/preparation_steps"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ingredients_group" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/preparationlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_l"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/preparation_steps_label" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>

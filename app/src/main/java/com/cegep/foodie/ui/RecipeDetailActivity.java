@@ -49,8 +49,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
         recipeName = (TextView)findViewById(R.id.recipe_name);
-        recipeTime = (TextView)findViewById(R.id.recipe_time);
-        servingSize = (TextView)findViewById(R.id.serving_size);
+        recipeTime = (TextView)findViewById(R.id.time);
+        servingSize = (TextView)findViewById(R.id.serving);
         recipeImage = (ImageView) findViewById(R.id.recipe_image);
         deleterecipe = (ImageView) findViewById(R.id.deleterecipe);
         updateRecipe = (ImageView) findViewById(R.id.updateRecipe);
@@ -62,7 +62,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
 
         recipeName.setText(recipe.getName());
-        servingSize.setText(String.format("Serves %d people", recipe.getServingSize()));
+        servingSize.setText("Serves " + recipe.getServingSize() + " people");
         DrawableCrossFadeFactory factory =
                 new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
         Glide.with(this)
