@@ -2,6 +2,7 @@ package com.cegep.foodie.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,10 +33,17 @@ public class RecipeByCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_by_category);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         Bundle extras = getIntent().getExtras();
 
             String childValue = extras.getString("childValue");
 
+            getSupportActionBar().setTitle(childValue);
 
         recyclerView=(RecyclerView)findViewById(R.id.recipeByCategory);
 

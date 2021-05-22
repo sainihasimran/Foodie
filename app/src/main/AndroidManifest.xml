@@ -21,7 +21,8 @@
             android:parentActivityName=".ui.chat.room.SelectRoomActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.createrecipe.EditRecipe" />
-        <activity android:name=".ui.RecipeByCategory" />
+        <activity android:name=".ui.RecipeByCategory"
+            android:parentActivityName=".ui.MainActivity"/>
         <activity android:name=".ui.SearchActivity" />
         <activity
             android:name=".ui.RecipeDetailActivity"

@@ -135,7 +135,6 @@
             android:layout_marginLeft="@dimen/size_l"
             android:layout_marginTop="@dimen/size_m"
             android:layout_marginEnd="@dimen/size_l"
-            android:animateLayoutChanges="true"
 
             />
 
