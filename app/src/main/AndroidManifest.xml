@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodie">
-        <activity android:name=".ui.createrecipe.EditRecipe"></activity>
+        <activity
+            android:name=".ui.chat.room.SelectRoomActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
+            android:name=".ui.chat.ChatActivity"
+            android:parentActivityName=".ui.chat.room.SelectRoomActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.createrecipe.EditRecipe" />
         <activity android:name=".ui.RecipeByCategory" />
         <activity android:name=".ui.SearchActivity" />
         <activity

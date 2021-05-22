@@ -52,6 +52,7 @@ dependencies {
 // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc02"
 
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
 
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
