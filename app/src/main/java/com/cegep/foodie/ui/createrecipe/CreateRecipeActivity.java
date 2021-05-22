@@ -378,26 +378,6 @@ public class CreateRecipeActivity extends AppCompatActivity implements RemoveIte
         preparationStep.setValue(preparationSteps);
 
 
-
+        finish();
     }
-
-    // TODO: 15/05/21 remove this method
-//    private void generateTestRecipe() {
-//        recipe = new Recipe();
-//        recipe.setName("Test Recipe 1");
-//        recipe.setServingSize(2);
-//        recipe.setCategory("Vegan");
-//        recipe.setDuration(60);
-//        recipe.setCalories(1200);
-//
-//        List<Ingredient> ingredients = new ArrayList<>();
-//        ingredients.add(new Ingredient("Ingredient 1"));
-//        ingredients.add((new Ingredient("Ingredient 2")));
-//        recipe.setIngredients(ingredients);
-//
-//        List<PreparationStep> preparationSteps = new ArrayList<>();
-//        preparationSteps.add(new PreparationStep(1, "Preparation Step 1"));
-//        preparationSteps.add(new PreparationStep(2, "Preparation Step 2"));
-//        recipe.setPreparationSteps(preparationSteps);
-//    }
 }

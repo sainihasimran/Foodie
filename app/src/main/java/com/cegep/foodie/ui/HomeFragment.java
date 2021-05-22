@@ -123,10 +123,9 @@ public class HomeFragment extends Fragment {
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("RecipeCategory").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("RecipeCategory").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 recipeArrayList=new ArrayList<>();
 
 
@@ -149,10 +148,11 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Failed to load categories", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
         return  view;

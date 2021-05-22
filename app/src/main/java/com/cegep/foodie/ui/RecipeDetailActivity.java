@@ -82,8 +82,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 databaseReference.child("RecipeCategory").child(recipe.getCategory()).child(recipe.getId()).removeValue();
-                Intent i = new Intent(RecipeDetailActivity.this,MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -98,7 +97,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         });
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("RecipeCategory").child(recipe.getCategory()).child(recipe.getId()).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("RecipeCategory").child(recipe.getCategory()).child(recipe.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
