@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <androidx.legacy.widget.Space
+        android:id="@+id/foreign_message_horizontal_space"
+        android:layout_width="56dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/foreign_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/message_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/foreign_message_horizontal_space"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/foreign_from_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?textAppearanceCaption"
+        app:layout_constraintEnd_toStartOf="@id/foreign_message_horizontal_space"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/foreign_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="From: harsimran12326" />
+
+    <TextView
+        android:id="@+id/foreign_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="?textAppearanceBody2"
+        app:layout_constraintBottom_toBottomOf="@id/foreign_bg"
+        app:layout_constraintEnd_toStartOf="@id/foreign_message_horizontal_space"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/foreign_from_text"
+        app:layout_constraintTop_toBottomOf="@id/foreign_from_text"
+        app:layout_constraintVertical_bias="0"
+        tools:text="This is a very very very very very vlong message" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/foreign_msg_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="foreign_bg,foreign_message_horizontal_space,foreign_from_text,foreign_msg" />
+
+    <androidx.legacy.widget.Space
+        android:id="@+id/self_msg_horizontal_space"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/self_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/message_self_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/self_msg_horizontal_space"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/self_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="end"
+        android:textAppearance="?textAppearanceBody2"
+        app:layout_constraintBottom_toBottomOf="@id/self_bg"
+        app:layout_constraintEnd_toEndOf="@id/self_bg"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/self_bg"
+        app:layout_constraintTop_toTopOf="@id/self_bg"
+        tools:text="This is a very very very very long message" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/self_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="self_bg,self_msg,self_msg_horizontal_space" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
