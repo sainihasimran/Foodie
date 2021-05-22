@@ -6,43 +6,47 @@
     <string name="password">Password</string>
     <string name="sign_up_label">Don\'t have an account?</string>
     <string name="sign_up_underline"><u>Sign Up</u></string>
-    <string name="sign_up">Sign Up</string>
-    <string name="signin_text">Already have an account?</string>
-    <string name="add_recipe">Add Recipe</string>
+    <string name="sign_up" translatable="false">Sign Up</string>
+    <string name="signin_text" translatable="false">Already have an account?</string>
+    <string name="add_recipe" translatable="false">Add Recipe</string>
 
     <!-- Create Recipe Screen -->
-    <string name="name">Name</string>
-    <string name="serving_size">Serving Size</string>
-    <string name="click_to_add_image">Click to add image</string>
-    <string name="category">Category</string>
-    <string name="time">Time</string>
-    <string name="calories">Calories</string>
-    <string name="ingredients">Ingredients</string>
-    <string name="add_ingredient">Add Ingredient</string>
-    <string name="preparation">Preparation</string>
-    <string name="add_preparation_step">Add Preparation Step</string>
-    <string name="create">Create</string>
-    <string name="storage_permission_declined">Storage permission declined</string>
-    <string name="choose_image_error">Choose image error</string>
-    <string name="recipe_name">Recipe Name</string>
-    <string name="preparation_steps">Preparation Steps</string>
-    <string name="error">Error</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="serving_size" translatable="false">Serving Size</string>
+    <string name="click_to_add_image" translatable="false">Click to add image</string>
+    <string name="category" translatable="false">Category</string>
+    <string name="time" translatable="false">Time</string>
+    <string name="calories" translatable="false">Calories</string>
+    <string name="ingredients" translatable="false">Ingredients</string>
+    <string name="add_ingredient" translatable="false">Add Ingredient</string>
+    <string name="preparation" translatable="false">Preparation</string>
+    <string name="add_preparation_step" translatable="false">Add Preparation Step</string>
+    <string name="create" translatable="false">Create</string>
+    <string name="storage_permission_declined" translatable="false">Storage permission declined</string>
+    <string name="choose_image_error" translatable="false">Choose image error</string>
+    <string name="recipe_name" translatable="false">Recipe Name</string>
+    <string name="preparation_steps" translatable="false">Preparation Steps</string>
+    <string name="error" translatable="false">Error</string>
 
     <!-- Form validation errors -->
-    <string name="error_empty_recipe_name">Recipe name cannot be empty</string>
-    <string name="error_empty_recipe_serving_size">Recipe serving size cannot be empty</string>
-    <string name="error_empty_recipe_category">Recipe category cannot be empty</string>
-    <string name="error_empty_recipe_time">Recipe time cannot be empty</string>
-    <string name="error_empty_recipe_duration">Recipe duration cannot be empty</string>
-    <string name="error_empty_recipe_calories">Recipe calories cannot be empty</string>
-    <string name="error_empty_recipe_ingredients">Recipe ingredients cannot be empty</string>
-    <string name="error_empty_recipe_preparation_steps">Recipe preparation steps cannot be empty</string>
+    <string name="error_empty_recipe_name" translatable="false">Recipe name cannot be empty</string>
+    <string name="error_empty_recipe_serving_size" translatable="false">Recipe serving size cannot be empty</string>
+    <string name="error_empty_recipe_category" translatable="false">Recipe category cannot be empty</string>
+    <string name="error_empty_recipe_time" translatable="false">Recipe time cannot be empty</string>
+    <string name="error_empty_recipe_duration" translatable="false">Recipe duration cannot be empty</string>
+    <string name="error_empty_recipe_calories" translatable="false">Recipe calories cannot be empty</string>
+    <string name="error_empty_recipe_ingredients" translatable="false">Recipe ingredients cannot be empty</string>
+    <string name="error_empty_recipe_preparation_steps" translatable="false">Recipe preparation steps cannot be empty</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_recipe_detail">RecipeDetailActivity</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_recipe_detail" translatable="false">RecipeDetailActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="hello_world" translatable="false">Hello Square World!</string>
+    <string name="veg">Veg</string>
+    <string name="meat">Meat</string>
+    <string name="vegan">Vegan</string>
+    <string name="drinks">Drinks</string>
 </resources>

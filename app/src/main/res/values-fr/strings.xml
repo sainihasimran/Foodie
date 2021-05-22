@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="veg">légumes</string>
+    <string name="meat">Viande</string>
+    <string name="vegan">Végétalien</string>
+    <string name="drinks">Boissons</string>
+    <string name="add_recipe">Ajouter une recette</string>
+
+    <string name="app_name">Fin gourmet</string>
+    <string name="email">E-mail</string>
+    <string name="sign_in">identifier</string>
+    <string name="sign_in_underline"><u>identifier</u></string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_up_label">Vous n\'avez pas de compte?</string>
+    <string name="sign_up" translatable="false">inscrire</string>
+    <string name="sign_up_underline"><u>inscrire</u></string>
+    <string name="signin_text" >Vous avez déjà un compte?</string>
+
+
+    <string name="name" >Nom</string>
+    <string name="serving_size" >Portion</string>
+    <string name="click_to_add_image" >Cliquez pour ajouter une image</string>
+    <string name="category" >Catégorie</string>
+    <string name="time" >Temps</string>
+    <string name="calories" >Calories</string>
+    <string name="ingredients" >Ingrédients</string>
+    <string name="add_ingredient" >Ajouter un ingrédient</string>
+    <string name="preparation" >Préparation</string>
+    <string name="add_preparation_step" >Ajouter une étape de préparation</string>
+    <string name="create" >Créer</string>
+    <string name="storage_permission_declined" >Autorisation de stockage refusée</string>
+    <string name="choose_image_error">Choisissez lerreur dimage</string>
+    <string name="recipe_name" >Nom de la recette</string>
+    <string name="preparation_steps" >Étapes de préparation</string>
+    <string name="error" >Erreur</string>
+
+
+    <string name="error_empty_recipe_name" >Le nom de la recette ne peut pas être vide</string>
+    <string name="error_empty_recipe_serving_size" >La portion de recette ne peut pas être vide</string>
+    <string name="error_empty_recipe_category" >La catégorie de recette ne peut pas être vide</string>
+    <string name="error_empty_recipe_time" >L\'heure de la recette ne peut pas être vide</string>
+    <string name="error_empty_recipe_duration" >La durée de la recette ne peut pas être vide</string>
+    <string name="error_empty_recipe_calories" >Les calories de la recette ne peuvent pas être vides</string>
+    <string name="error_empty_recipe_ingredients" >Les ingrédients de la recette ne peuvent pas être vides</string>
+    <string name="error_empty_recipe_preparation_steps" >Les étapes de préparation de la recette ne peuvent pas être vides</string>
+    <string name="hello_blank_fragment" > Bonjour fragment vierge</string>
+    <string name="title_activity_recipe_detail" >RecetteDétailActivité</string>
+
+
+</resources>
