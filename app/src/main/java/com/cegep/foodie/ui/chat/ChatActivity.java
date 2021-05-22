@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.foodie.R;
 import com.cegep.foodie.model.Message;
@@ -17,12 +18,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -72,8 +70,13 @@ public class ChatActivity extends AppCompatActivity {
                 return new MessageHolder(view, currentUser);
             }
         };
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        adapter.registerAdapterDataObserver(new ScrollToBottomObserver(recyclerView, adapter, linearLayoutManager));
         recyclerView.setAdapter(adapter);
     }
 }
