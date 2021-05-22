@@ -6,18 +6,15 @@ public class Message {
 
     private String message;
 
-    private String id;
-
     private long timestamp;
 
     public Message() {
 
     }
 
-    public Message(String email, String message, String id, long timestamp) {
+    public Message(String email, String message,  long timestamp) {
         this.email = email;
         this.message = message;
-        this.id = id;
         this.timestamp = timestamp;
     }
 
@@ -35,14 +32,6 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public long getTimestamp() {

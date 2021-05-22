@@ -15,13 +15,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Chat" />
 
+    <FrameLayout
+        android:id="@+id/bg_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#ececec"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/space" />
+
+    <androidx.legacy.widget.Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@id/messageEditText" />
+
     <EditText
         android:id="@+id/messageEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:layout_marginEnd="8dp"
         android:layout_weight="1"
         android:background="@drawable/edit_text_bg"
         android:hint="Say something..."
@@ -35,7 +48,7 @@
         android:id="@+id/send_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:src="@drawable/ic_send"
         android:tint="?colorPrimary"
