@@ -9,8 +9,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import com.cegep.foodie.R;
 import com.cegep.foodie.ui.auth.AuthActivity;
+import com.cegep.foodie.ui.chat.ChatActivity;
 import com.cegep.foodie.ui.createrecipe.CreateRecipeActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, AuthActivity.class);
                     startActivity(intent);
                     finish();
+                    return true;
+                } else if (item.getItemId() == R.id.chat) {
+                    Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                    startActivity(intent);
                     return true;
                 }
 
