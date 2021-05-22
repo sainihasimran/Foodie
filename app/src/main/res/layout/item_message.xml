@@ -44,9 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:textAppearance="?textAppearanceBody2"
-        app:layout_constraintBottom_toBottomOf="@id/foreign_bg"
+        app:layout_constraintBottom_toTopOf="@id/foreign_timestamp"
         app:layout_constraintEnd_toStartOf="@id/foreign_message_horizontal_space"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/foreign_from_text"
@@ -54,12 +53,24 @@
         app:layout_constraintVertical_bias="0"
         tools:text="This is a very very very very very vlong message" />
 
+    <TextView
+        android:id="@+id/foreign_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAppearance="?textAppearanceCaption"
+        app:layout_constraintBottom_toBottomOf="@id/foreign_bg"
+        app:layout_constraintStart_toStartOf="@id/foreign_msg"
+        app:layout_constraintTop_toBottomOf="@id/foreign_msg"
+        tools:text="April 16, 2021 01:00 am" />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/foreign_msg_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="foreign_bg,foreign_message_horizontal_space,foreign_from_text,foreign_msg" />
+        android:visibility="visible"
+        app:constraint_referenced_ids="foreign_bg,foreign_message_horizontal_space,foreign_from_text,foreign_msg,foreign_timestamp" />
 
     <androidx.legacy.widget.Space
         android:id="@+id/self_msg_horizontal_space"
@@ -87,21 +98,33 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
         android:gravity="end"
         android:textAppearance="?textAppearanceBody2"
-        app:layout_constraintBottom_toBottomOf="@id/self_bg"
+        app:layout_constraintBottom_toTopOf="@id/self_timestamp"
         app:layout_constraintEnd_toEndOf="@id/self_bg"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="@id/self_bg"
         app:layout_constraintTop_toTopOf="@id/self_bg"
+        app:layout_constraintVertical_bias="1"
         tools:text="This is a very very very very long message" />
+
+    <TextView
+        android:id="@+id/self_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAppearance="?textAppearanceCaption"
+        app:layout_constraintBottom_toBottomOf="@id/self_bg"
+        app:layout_constraintEnd_toEndOf="@id/self_msg"
+        app:layout_constraintTop_toBottomOf="@id/self_msg"
+        tools:text="April 16, 2021 01:00 am" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/self_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="self_bg,self_msg,self_msg_horizontal_space" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="self_bg,self_msg,self_msg_horizontal_space,self_timestamp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
