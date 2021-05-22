@@ -1,7 +1,11 @@
 package com.cegep.foodie.ui.createrecipe;
 
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -17,6 +21,7 @@ import android.widget.EditText;
 
 import com.cegep.foodie.R;
 import com.cegep.foodie.list.StepsAdapter;
+import com.cegep.foodie.model.Category;
 import com.cegep.foodie.model.Ingredient;
 import com.cegep.foodie.model.PreparationStep;
 import com.cegep.foodie.model.Recipe;
@@ -39,7 +44,8 @@ import java.util.List;
 public class EditRecipe extends AppCompatActivity {
     RecyclerView stepsList ;
     public StepsAdapter stepsAdapter;
-    EditText updateRecipeName,updateServingSize,updateCategory,updateTime,updateCalories;
+    EditText updateRecipeName,updateServingSize,updateTime,updateCalories;
+    AutoCompleteTextView timetype,updateCategory;
     private final List<Ingredient> ingredientSteps = new ArrayList<>();
 public String imageSource;
     ChipGroup chipGroup;
@@ -49,6 +55,14 @@ public String imageSource;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_recipe);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Edit Recipe");
+
         String recipeId = getIntent().getStringExtra("recipeId");
         String recipeCategory = getIntent().getStringExtra("recipeCategory");
          stepsList = findViewById(R.id.steps_recycler_view);
@@ -59,6 +73,9 @@ public String imageSource;
         updateTime = findViewById(R.id.updateTime);
         updateCalories = findViewById(R.id.updateCalories);
         updateRecipe = findViewById(R.id.updateRecipe);
+        timetype = findViewById(R.id.time_type);
+
+
 
 
 
@@ -73,7 +90,19 @@ public String imageSource;
                 updateRecipeName.setText(recipeData.getName());
                 updateServingSize.setText( String.valueOf(recipeData.getServingSize()));
                 updateCategory.setText(recipeData.getCategory());
-                updateTime.setText(String.valueOf(recipeData.getDuration()));
+
+                int duration = recipeData.getDuration();
+                if (duration / 60 > 0) {
+                    timetype.setText("hrs");
+                    updateTime.setText(String.valueOf(duration / 60));
+                } else {
+                    timetype.setText("mins");
+                    updateTime.setText(String.valueOf(duration));
+                }
+
+                setupCategories();
+                setupDuration();
+
                 updateCalories.setText(String.valueOf(recipeData.getCalories()));
                 imageSource=recipeData.getImage();
                  chipGroup = findViewById(R.id.ingredients_group);
@@ -172,7 +201,9 @@ public String imageSource;
 
                 int calories = Integer.parseInt(((EditText) findViewById(R.id.updateCalories)).getText().toString());
                 int servingSize = Integer.parseInt(((EditText) findViewById(R.id.updateServingSize)).getText().toString());
-                int updateTime = Integer.parseInt(((EditText) findViewById(R.id.updateTime)).getText().toString());
+
+                int time = Integer.parseInt(updateTime.getText().toString());
+                time = timetype.getText().toString().equals("hrs") ? time * 60 : time;
 
                 HashMap<String, Object> updateRecipe = new HashMap<>();
                 updateRecipe.put("name", updateRecipeName.getText().toString());
@@ -180,36 +211,49 @@ public String imageSource;
                 updateRecipe.put("image", imageSource);
                 updateRecipe.put("servingSize", servingSize);
                 updateRecipe.put("category", updateCategory.getText().toString());
-                updateRecipe.put("duration", updateTime);
+                updateRecipe.put("duration", time);
                 updateRecipe.put("ingredients", ingredientSteps);
                 updateRecipe.put("preparationSteps", preparationSteps);
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("RecipeCategory").child(recipeCategory).child(recipeId).setValue(updateRecipe)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                // Write was successful!
-                                // ...
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Write failed
-                                // ...
-                            }
-                        });
+                if (!recipeCategory.equals(updateCategory.getText().toString())) {
+                    databaseReference.child("RecipeCategory").child(recipeCategory).child(recipeId).removeValue();
+                }
+                databaseReference.child("RecipeCategory").child(updateCategory.getText().toString()).child(recipeId).setValue(updateRecipe);
 
                 Intent i = new Intent(EditRecipe.this, MainActivity.class);
-
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
-
 
             }
         });
 
 
+    }
+
+    private void setupCategories() {
+        final List<String> categories = new ArrayList<>(Category.values().length);
+        for (Category category : Category.values()) {
+            categories.add(category.getNiceName());
+        }
+
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, categories);
+        AutoCompleteTextView recipeCategoryTextView = findViewById(R.id.updateCategory);
+        recipeCategoryTextView.setAdapter(categoryAdapter);
+
+        recipeCategoryTextView.setOnItemClickListener((parent, view1, position, id) -> updateCategory.setText(categories.get(position)));
+    }
+
+    private void setupDuration() {
+        final List<String> durations = new ArrayList<>();
+        durations.add("hrs");
+        durations.add("mins");
+
+        ArrayAdapter<String> durationsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, durations);
+        AutoCompleteTextView durationsTextView = findViewById(R.id.time_type);
+        durationsTextView.setAdapter(durationsAdapter);
+
+        durationsTextView.setOnItemClickListener((parent, view1, position, id) -> timetype.setText(durations.get(position)));
     }
 }
 

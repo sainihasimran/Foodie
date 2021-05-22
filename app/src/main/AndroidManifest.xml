@@ -20,13 +20,15 @@
             android:name=".ui.chat.ChatActivity"
             android:parentActivityName=".ui.chat.room.SelectRoomActivity"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.createrecipe.EditRecipe" />
+        <activity android:name=".ui.createrecipe.EditRecipe"
+            android:parentActivityName=".ui.RecipeDetailActivity"/>
         <activity android:name=".ui.RecipeByCategory"
             android:parentActivityName=".ui.MainActivity"/>
         <activity android:name=".ui.SearchActivity" />
         <activity
             android:name=".ui.RecipeDetailActivity"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.MainActivity"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".ui.auth.AuthActivity"
             android:theme="@style/Theme.Foodie.Login"
